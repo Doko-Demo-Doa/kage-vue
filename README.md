@@ -1,6 +1,6 @@
 # kage-vue
 
-
+Electron apps for composing slides using Reveal.js and Vue
 
 ## Project setup
 ```
