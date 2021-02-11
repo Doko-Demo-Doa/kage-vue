@@ -1,12 +1,18 @@
 import { createApp } from 'vue';
-// @ts-ignore
-import Reveal from 'reveal.js';
-// @ts-ignore
-import Markdown from 'reveal.js/plugin/markdown/markdown.esm';
+import Buefy from 'buefy';
+import 'buefy/dist/buefy.css';
 
 import App from './app.vue';
-import './registerServiceWorker';
 import router from './router';
 import store from './store';
 
-createApp(App).use(store).use(router).mount('#app');
+import './assets/scss/app.scss';
+import './registerServiceWorker';
+
+const app = createApp(App)
+  .use(store)
+  .use(router)
+  // @ts-ignore
+  .use(Buefy);
+
+app.mount('#app');
