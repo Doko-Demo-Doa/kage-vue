@@ -4,7 +4,7 @@
       <el-tabs type="border-card">
         <el-tab-pane>
           <template #label>
-            <span><i class="el-icon-date"></i> File</span>
+            <span><i class="el-icon-date" /> File</span>
           </template>
           Test
         </el-tab-pane>
@@ -13,7 +13,10 @@
             <slide-list />
           </div>
         </el-tab-pane>
-        <el-tab-pane label="Design">Design</el-tab-pane>
+
+        <el-tab-pane label="Design">
+          Design
+        </el-tab-pane>
       </el-tabs>
     </div>
   </div>
