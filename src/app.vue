@@ -17,7 +17,6 @@ html
   height: 100%
 
 body
-  background-color: wheat
   margin: 0
   padding: 0
   display: flex

@@ -27,10 +27,11 @@ import EditorToolbar from "@/components/editor-toolbar/editor-toolbar.vue";
 export default class EditorRibbon extends Vue {}
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .editor-ribbon
   width 100%
   height 100%
+  user-select none
 
   .el-tabs
     height 100%

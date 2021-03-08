@@ -1,7 +1,10 @@
 <template>
   <div class="editor-panes">
     <splitpanes vertical class="splitter">
-      <pane class="pane1" size="20" min-size="15" max-size="40">2</pane>
+      <pane class="pane1" size="20" min-size="15" max-size="40">
+        <slide-thumbnail v-for="(item, index) in items" :key="index" />
+        <div class="blank-holder" />
+      </pane>
       <pane>3</pane>
     </splitpanes>
   </div>
@@ -10,6 +13,8 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { Splitpanes, Pane } from "splitpanes";
+import SlideThumbnail from "@/components/slide-thumbnail/slide-thumbnail.vue";
+
 import "splitpanes/dist/splitpanes.css";
 
 @Options({
@@ -17,9 +22,12 @@ import "splitpanes/dist/splitpanes.css";
     EditorPanes,
     Splitpanes,
     Pane,
+    SlideThumbnail,
   },
 })
-export default class EditorPanes extends Vue {}
+export default class EditorPanes extends Vue {
+  items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+}
 </script>
 
 <style lang="stylus">
@@ -28,5 +36,9 @@ export default class EditorPanes extends Vue {}
 
   .splitter
     .pane1
-      background-color yellow
+      overflow-y scroll
+      border-right 1px dashed grey
+
+      .blank-holder
+        height 140px
 </style>

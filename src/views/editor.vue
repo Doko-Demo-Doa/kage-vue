@@ -4,14 +4,14 @@
       <el-tabs type="border-card">
         <el-tab-pane>
           <template #label>
-            <span><i class="el-icon-date" />File</span>
+            <span><i class="el-icon-date" /> File</span>
           </template>
           <editor-toolbar />
         </el-tab-pane>
         <el-tab-pane label="Home">
-          <div class="home-panel">
-            <slide-list />
-          </div>
+          <template #label>
+            <span><i class="el-icon-date" /> Home</span>
+          </template>
         </el-tab-pane>
 
         <el-tab-pane label="Design"> Design 2 </el-tab-pane>
@@ -41,14 +41,8 @@ export default class Editor extends Vue {}
 
   .editor-ribbon
     width 100%
+    user-select none
 
     .el-tabs
       height 100%
-
-      .el-tabs__content
-      .home-panel
-        margin 0
-        padding 0
-        display flex
-        flex-direction row
 </style>

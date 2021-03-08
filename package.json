@@ -29,6 +29,7 @@
     "vue-class-component": "^8.0.0-0",
     "vue-cli-plugin-electron-builder": "2.0.0-rc.6",
     "vue-router": "^4.0.0-0",
+    "vuedraggable": "^4.0.1",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
@@ -60,6 +61,7 @@
     "lint-staged": "10.5.4",
     "prettier": "2.2.1",
     "spectron": "13.0.0",
+    "style-resources-loader": "1.4.1",
     "stylus": "0.54.8",
     "stylus-loader": "3.0.2",
     "typescript": "~4.2.3",

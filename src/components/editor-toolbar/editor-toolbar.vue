@@ -6,7 +6,7 @@
       Preview
     </el-button>
     <el-button size="medium">Medium</el-button>
-    <el-button size="medium">Medium</el-button>
+    <el-button type="success" plain>Publish</el-button>
   </el-row>
 </template>
 

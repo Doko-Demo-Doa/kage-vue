@@ -18,6 +18,7 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
+    "@typescript-eslint/no-var-requires": "off",
   },
   overrides: [
     {

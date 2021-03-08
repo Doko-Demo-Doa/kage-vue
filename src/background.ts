@@ -13,11 +13,14 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 900,
+    width: 1000,
     height: 640,
+    minWidth: 1000,
+    minHeight: 640,
     webPreferences: {
       // Required for Spectron testing
       enableRemoteModule: true,
+      nativeWindowOpen: true,
 
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
