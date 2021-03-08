@@ -1,11 +1,9 @@
 <template>
-  <div class="slide-list">
-    List
-  </div>
+  <div class="slide-list">List</div>
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
+import { Vue } from "vue-class-component";
 
 export default class SlideList extends Vue {}
 </script>
@@ -14,5 +12,4 @@ export default class SlideList extends Vue {}
 .slide-list
   min-width 120px
   background-color blue
-
 </style>

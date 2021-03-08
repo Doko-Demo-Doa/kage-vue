@@ -14,17 +14,15 @@
           </div>
         </el-tab-pane>
 
-        <el-tab-pane label="Design">
-          Design
-        </el-tab-pane>
+        <el-tab-pane label="Design"> Design </el-tab-pane>
       </el-tabs>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import SlideList from '@/components/slide-list/slide-list.vue';
+import { Options, Vue } from "vue-class-component";
+import SlideList from "@/components/slide-list/slide-list.vue";
 
 @Options({
   components: {
@@ -51,5 +49,4 @@ export default class Editor extends Vue {}
         padding 0
         display flex
         flex-direction row
-
 </style>

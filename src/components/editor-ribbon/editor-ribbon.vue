@@ -8,9 +8,7 @@
         Route
       </el-tab-pane>
       <el-tab-pane label="Home">
-        <div class="home-panel">
-          Home
-        </div>
+        <div class="home-panel">Home</div>
       </el-tab-pane>
       <el-tab-pane label="Design">Design</el-tab-pane>
     </el-tabs>
@@ -18,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
+import { Vue } from "vue-class-component";
 
 export default class EditorRibbon extends Vue {}
 </script>
@@ -34,5 +32,4 @@ export default class EditorRibbon extends Vue {}
   .el-tabs__content
   .home-panel
     height 100%
-
 </style>

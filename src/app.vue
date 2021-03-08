@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
   components: {},
 };
 </script>
@@ -35,5 +35,4 @@ body
 
   .main-layout
     flex-grow: 2
-
 </style>
