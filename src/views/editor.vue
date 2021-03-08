@@ -4,9 +4,9 @@
       <el-tabs type="border-card">
         <el-tab-pane>
           <template #label>
-            <span><i class="el-icon-date" /> File</span>
+            <span><i class="el-icon-date" />File</span>
           </template>
-          Test
+          <editor-toolbar />
         </el-tab-pane>
         <el-tab-pane label="Home">
           <div class="home-panel">
@@ -14,19 +14,22 @@
           </div>
         </el-tab-pane>
 
-        <el-tab-pane label="Design"> Design </el-tab-pane>
+        <el-tab-pane label="Design"> Design 2 </el-tab-pane>
       </el-tabs>
     </div>
+    <EditorPanes />
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import SlideList from "@/components/slide-list/slide-list.vue";
+import EditorToolbar from "@/components/editor-toolbar/editor-toolbar.vue";
+import EditorPanes from "@/components/editor-panes/editor-panes.vue";
 
 @Options({
   components: {
-    SlideList,
+    EditorToolbar,
+    EditorPanes,
   },
 })
 export default class Editor extends Vue {}
@@ -38,7 +41,6 @@ export default class Editor extends Vue {}
 
   .editor-ribbon
     width 100%
-    height 100%
 
     .el-tabs
       height 100%

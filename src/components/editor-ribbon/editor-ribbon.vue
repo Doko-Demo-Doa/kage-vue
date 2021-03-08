@@ -16,8 +16,14 @@
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-class-component";
+import { Options, Vue } from "vue-class-component";
+import EditorToolbar from "@/components/editor-toolbar/editor-toolbar.vue";
 
+@Options({
+  components: {
+    EditorToolbar,
+  },
+})
 export default class EditorRibbon extends Vue {}
 </script>
 
