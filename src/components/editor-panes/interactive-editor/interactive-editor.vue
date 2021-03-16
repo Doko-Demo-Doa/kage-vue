@@ -1,34 +1,92 @@
 <template>
   <div class="interactive-editor">
-    <div class="editor-main">
-      <div class="header-area">
-        <textarea class="slide-title" maxlength="26" aria-rowcount="2" rows="2" />
+    <div class="slide-preview" :style="{ zIndex: showPreview ? 0 : -2 }">
+      <div class="reveal">
+        <div class="slides">
+          <section>
+            <h2>{{ title }}</h2>
+            <h2></h2>
+          </section>
+          <section>
+            <section>Vertical Slide 1</section>
+            <section>Vertical Slide 2</section>
+          </section>
+          <section>
+            <h2>{{ title }}</h2>
+            <h2></h2>
+          </section>
+        </div>
       </div>
     </div>
+    <div class="editor-main" :style="{ visibility: showPreview ? 'hidden' : 'visible' }">
+      <div class="header-area">
+        <textarea
+          v-model="title"
+          class="slide-title"
+          placeholder="Enter text here"
+          maxlength="26"
+          aria-rowcount="2"
+          rows="2"
+          @change="onChangeTitle($event.target.value)"
+        />
+      </div>
+    </div>
+    <div @click="onClick">Test</div>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+// @ts-ignore
+import Reveal from "reveal.js/dist/reveal";
 
 @Options({
   components: {},
 })
 export default class InteractiveEditor extends Vue {
   items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  title = "hehe";
+  showPreview = false;
+
+  onChangeTitle(newText: string) {
+    this.title = newText;
+  }
+
+  onClick() {
+    this.showPreview = !this.showPreview;
+  }
+
+  mounted() {
+    Reveal.initialize();
+    return;
+  }
+
+  unmounted() {
+    // Reveal.shuffle();
+  }
 }
 </script>
 
 <style lang="stylus">
 .interactive-editor
+  position relative
   height 100%
   max-height 520px
   max-width 1000px
   padding 10px
   display flex
+  flex-direction column
+
+  .slide-preview {
+    width 100%
+    height 400px
+    position absolute
+    z-index -2
+  }
 
   .editor-main
     flex-grow 2
+    background white
     border 1px dashed $color-midnight
 
     .header-area
