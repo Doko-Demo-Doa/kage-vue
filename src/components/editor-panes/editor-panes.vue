@@ -5,7 +5,9 @@
         <slide-thumbnail v-for="(item, index) in items" :key="index" />
         <div class="blank-holder" />
       </pane>
-      <pane>3</pane>
+      <pane>
+        <interactive-editor />
+      </pane>
     </splitpanes>
   </div>
 </template>
@@ -14,6 +16,7 @@
 import { Options, Vue } from "vue-class-component";
 import { Splitpanes, Pane } from "splitpanes";
 import SlideThumbnail from "@/components/slide-thumbnail/slide-thumbnail.vue";
+import InteractiveEditor from "@/components/editor-panes/interactive-editor/interactive-editor.vue";
 
 import "splitpanes/dist/splitpanes.css";
 
@@ -23,6 +26,7 @@ import "splitpanes/dist/splitpanes.css";
     Splitpanes,
     Pane,
     SlideThumbnail,
+    InteractiveEditor,
   },
 })
 export default class EditorPanes extends Vue {
