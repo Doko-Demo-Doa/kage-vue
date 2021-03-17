@@ -4,29 +4,38 @@
       <div class="reveal">
         <div class="slides">
           <section>
-            <h2>Tablas con información</h2>
-            <i class="fa" :class="`fa-images`"></i>
-            <table>
-              <thead>
-                <tr>
-                  <th>Ciudad</th>
-                  <th>Año de fundación</th>
-                  <th>Población</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Gijón</td>
-                  <td>Siglo V a. C.</td>
-                  <td>274290</td>
-                </tr>
-                <tr>
-                  <td>Oviedo</td>
-                  <td>761</td>
-                  <td>221870</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="slide-page-wrapper">
+              <h2>Tablas con información</h2>
+              <i class="fa" :class="`fa-images`"></i>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ciudad</th>
+                    <th>Año de fundación</th>
+                    <th>Población</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Gijón</td>
+                    <td>Siglo V a. C.</td>
+                    <td>274290</td>
+                  </tr>
+                  <tr>
+                    <td>Oviedo</td>
+                    <td>761</td>
+                    <td>221870</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <img
+                src="https://cuvent.github.io/react-native-vision-camera/img/example_intro.png"
+                alt="Girl in a jacket"
+                width="500"
+                height="600"
+              />
+            </div>
           </section>
           <section>
             <h2>{{ title }}</h2>
@@ -38,7 +47,11 @@
           </section>
           <section>
             <h2>{{ title }}</h2>
-            <h2></h2>
+            <h2>SelectX</h2>
+            <h2>SelectX</h2>
+            <h2>SelectX</h2>
+            <h2>SelectX</h2>
+            <h2>SelectX</h2>
           </section>
         </div>
       </div>
@@ -64,14 +77,30 @@
 import { Options, Vue } from "vue-class-component";
 // @ts-ignore
 import Reveal from "reveal.js/dist/reveal";
+// @ts-ignore
+import VueWindowPortal from "vue-window-portal";
 
 @Options({
-  components: {},
+  components: {
+    VueWindowPortal,
+  },
 })
 export default class InteractiveEditor extends Vue {
   items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   title = "hehe";
-  showPreview = false;
+  showPreview = true;
+  portalOpened = false;
+
+  windowRef?: Window = undefined;
+
+  openPortal() {
+    this.portalOpened = true;
+    return;
+  }
+
+  closePortal(): void {
+    return;
+  }
 
   onChangeTitle(newText: string) {
     this.title = newText;
@@ -107,6 +136,16 @@ export default class InteractiveEditor extends Vue {
     height 400px
     position absolute
     z-index -2
+
+    .slide-page-wrapper {
+      position relative
+
+      img {
+        position absolute
+        right 0
+        top 0
+      }
+    }
   }
 
   .editor-main
