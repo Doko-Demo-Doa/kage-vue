@@ -30,7 +30,7 @@ import "splitpanes/dist/splitpanes.css";
   },
 })
 export default class EditorPanes extends Vue {
-  items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  items = [1, 1, 1];
 }
 </script>
 

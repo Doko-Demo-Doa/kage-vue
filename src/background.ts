@@ -1,3 +1,4 @@
+import path from "path";
 import { app, protocol, BrowserWindow } from "electron";
 import { autoUpdater } from "electron-updater";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
@@ -13,10 +14,10 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 1000,
-    height: 640,
-    minWidth: 1000,
-    minHeight: 640,
+    width: 1200,
+    height: 680,
+    minWidth: 1200,
+    minHeight: 680,
     webPreferences: {
       // Required for Spectron testing
       enableRemoteModule: true,
@@ -24,7 +25,9 @@ async function createWindow() {
 
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: (process.env.ELECTRON_NODE_INTEGRATION as unknown) as boolean,
+      nodeIntegration: Boolean(process.env.ELECTRON_NODE_INTEGRATION),
+      contextIsolation: false,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 

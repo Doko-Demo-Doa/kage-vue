@@ -79,6 +79,7 @@ import { Options, Vue } from "vue-class-component";
 import Reveal from "reveal.js/dist/reveal";
 // @ts-ignore
 import VueWindowPortal from "vue-window-portal";
+import { isElectron } from "@/native/utils-platform";
 
 @Options({
   components: {
@@ -108,6 +109,11 @@ export default class InteractiveEditor extends Vue {
 
   onClick() {
     this.showPreview = !this.showPreview;
+
+    if (isElectron()) {
+      const { dialog } = require("electron").remote;
+      dialog.showOpenDialog({ properties: ["openFile", "multiSelections"] });
+    }
   }
 
   mounted() {

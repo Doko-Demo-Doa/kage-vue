@@ -21,6 +21,7 @@
     "electron-updater": "4.3.8"
   },
   "devDependencies": {
+    "@electron/remote": "1.0.4",
     "@fortawesome/fontawesome-free": "5.15.3",
     "@types/electron-devtools-installer": "2.2.0",
     "@types/jest": "^26.0.20",
