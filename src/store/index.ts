@@ -8,6 +8,7 @@ export const key: InjectionKey<Store<AppState>> = Symbol();
 const store = createStore<AppState>({
   state: {
     composingSlides: Array<SlideModel>(),
+    selectedSlideIndex: -1,
     activeAsset: null,
     // Action history, useful for undo-repo actions.
     backtrack: Array<string>(),

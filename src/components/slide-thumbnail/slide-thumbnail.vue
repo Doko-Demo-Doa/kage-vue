@@ -36,7 +36,7 @@ export default class SlideThumbnail extends Vue {}
     border-radius 6px
 
     .title
-      padding 12px 12px
+      padding 12px
       font-weight bold
       text-align start
 

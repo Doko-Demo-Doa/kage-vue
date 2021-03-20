@@ -16,6 +16,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { Splitpanes, Pane } from "splitpanes";
+import hotkeys from "hotkeys-js";
 import SlideThumbnail from "@/components/slide-thumbnail/slide-thumbnail.vue";
 import InteractiveEditor from "@/components/editor-panes/interactive-editor/interactive-editor.vue";
 import CanvasModifier from "@/components/canvas-modifier/canvas-modifier.vue";
@@ -41,6 +42,14 @@ export default class EditorPanes extends Vue {
   mounted() {
     const store = useStore();
     this.items = store.state.composingSlides;
+
+    hotkeys("ctrl+m", () => {
+      store.commit("newSlide");
+    });
+  }
+
+  beforeUnmount() {
+    hotkeys.unbind("a");
   }
 }
 </script>
