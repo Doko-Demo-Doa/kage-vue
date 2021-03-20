@@ -1,21 +1,33 @@
 <template>
   <div class="main-layout editor-wrapper">
     <div class="editor-ribbon">
-      <el-tabs type="border-card">
-        <el-tab-pane>
-          <template #label>
-            <span><i class="el-icon-date" /> File</span>
+      <a-tabs>
+        <a-tab-pane key="1">
+          <template #tab>
+            <span>
+              <file-outlined />
+              File
+            </span>
           </template>
           <editor-toolbar />
-        </el-tab-pane>
-        <el-tab-pane label="Home">
-          <template #label>
-            <span><i class="el-icon-date" /> Home</span>
+        </a-tab-pane>
+        <a-tab-pane key="2">
+          <template #tab>
+            <span>
+              <home-outlined />
+              Home
+            </span>
           </template>
-        </el-tab-pane>
-
-        <el-tab-pane label="Design"> Design 2 </el-tab-pane>
-      </el-tabs>
+        </a-tab-pane>
+        <a-tab-pane key="3">
+          <template #tab>
+            <span>
+              <ant-design-outlined />
+              Design
+            </span>
+          </template>
+        </a-tab-pane>
+      </a-tabs>
     </div>
     <EditorPanes />
   </div>
@@ -23,6 +35,7 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { HomeOutlined, FileOutlined, AntDesignOutlined } from "@ant-design/icons-vue";
 import EditorToolbar from "@/components/editor-toolbar/editor-toolbar.vue";
 import EditorPanes from "@/components/editor-panes/editor-panes.vue";
 
@@ -30,6 +43,9 @@ import EditorPanes from "@/components/editor-panes/editor-panes.vue";
   components: {
     EditorToolbar,
     EditorPanes,
+    HomeOutlined,
+    FileOutlined,
+    AntDesignOutlined,
   },
 })
 export default class Editor extends Vue {}
@@ -43,6 +59,8 @@ export default class Editor extends Vue {}
     width 100%
     user-select none
 
-    .el-tabs
-      height 100%
+    .ant-tabs-nav-scroll {
+      display flex
+      justify-content flex-start
+    }
 </style>

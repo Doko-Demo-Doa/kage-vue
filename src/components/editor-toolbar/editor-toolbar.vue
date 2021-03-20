@@ -1,37 +1,42 @@
 <template>
-  <el-row class="toolbar-wrapper">
-    <el-button size="small" @click="createNewSlide">
-      <i class="el-icon-plus" />
+  <a-row class="toolbar-wrapper">
+    <a-button @click="createNewSlide">
+      <paper-clip-outlined />
       New Slide
-    </el-button>
+    </a-button>
 
-    <el-button
-      v-for="(button, index) in editorButtons"
-      :key="index"
-      size="small"
-      type="text"
-      circle
-    >
+    <div class="separator" />
+
+    <a-button v-for="(button, index) in editorButtons" :key="index" type="link" circle>
       <i class="fa" :class="`fa-${button.icon}`" />
-    </el-button>
+    </a-button>
 
-    <el-button size="small" type="warning">
-      <i class="el-icon-s-platform" />
+    <div class="separator" />
+
+    <a-button type="danger">
+      <gateway-outlined />
       Preview
-    </el-button>
-    <el-button size="small" type="success" plain>
-      <i class="el-icon-upload2" />
+    </a-button>
+    <div class="separator" />
+    <a-button type="primary">
+      <upload-outlined />
       Publish
-    </el-button>
-  </el-row>
+    </a-button>
+  </a-row>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { PaperClipOutlined, UploadOutlined, GatewayOutlined } from "@ant-design/icons-vue";
 import store from "@/store";
 
 export default defineComponent({
   name: "EditorToolbar",
+  components: {
+    PaperClipOutlined,
+    UploadOutlined,
+    GatewayOutlined,
+  },
   data() {
     return {
       editorButtons: [
@@ -119,7 +124,13 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-.toolbar-wrapper {
+.toolbar-wrapper
   padding 0px 12px
-}
+  margin-bottom 12px
+
+  .separator
+    width 0.5rem
+
+  .publish
+    background $color-green
 </style>
