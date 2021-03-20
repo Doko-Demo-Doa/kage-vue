@@ -1,6 +1,6 @@
 <template>
   <el-row class="toolbar-wrapper">
-    <el-button size="small">
+    <el-button size="small" @click="createNewSlide">
       <i class="el-icon-plus" />
       New Slide
     </el-button>
@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import store from "@/store";
 
 export default defineComponent({
   name: "EditorToolbar",
@@ -108,6 +109,11 @@ export default defineComponent({
         },
       ],
     };
+  },
+  methods: {
+    createNewSlide() {
+      store.commit("newSlide");
+    },
   },
 });
 </script>

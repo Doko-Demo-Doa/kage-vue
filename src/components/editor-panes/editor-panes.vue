@@ -6,7 +6,8 @@
         <div class="blank-holder" />
       </pane>
       <pane>
-        <interactive-editor />
+        <!-- <interactive-editor /> -->
+        <canvas-modifier />
       </pane>
     </splitpanes>
   </div>
@@ -17,8 +18,12 @@ import { Options, Vue } from "vue-class-component";
 import { Splitpanes, Pane } from "splitpanes";
 import SlideThumbnail from "@/components/slide-thumbnail/slide-thumbnail.vue";
 import InteractiveEditor from "@/components/editor-panes/interactive-editor/interactive-editor.vue";
+import CanvasModifier from "@/components/canvas-modifier/canvas-modifier.vue";
+
+import { useStore } from "@/store";
 
 import "splitpanes/dist/splitpanes.css";
+import SlideModel from "@/vms/slide";
 
 @Options({
   components: {
@@ -27,10 +32,16 @@ import "splitpanes/dist/splitpanes.css";
     Pane,
     SlideThumbnail,
     InteractiveEditor,
+    CanvasModifier,
   },
 })
 export default class EditorPanes extends Vue {
-  items = [1, 1, 1];
+  items: SlideModel[] = [];
+
+  mounted() {
+    const store = useStore();
+    this.items = store.state.composingSlides;
+  }
 }
 </script>
 
