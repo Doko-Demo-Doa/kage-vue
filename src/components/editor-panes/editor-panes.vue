@@ -1,21 +1,20 @@
 <template>
   <div class="editor-panes">
-    <splitpanes vertical class="splitter">
-      <pane class="pane1" size="20" min-size="15" max-size="40">
+    <div class="splitter">
+      <div class="pane1">
         <slide-thumbnail v-for="(item, index) in items" :key="index" />
         <div class="blank-holder" />
-      </pane>
-      <pane>
-        <!-- <interactive-editor /> -->
-        <canvas-modifier />
-      </pane>
-    </splitpanes>
+      </div>
+      <div>
+        <interactive-editor />
+        <!-- <canvas-modifier /> -->
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { Splitpanes, Pane } from "splitpanes";
 import hotkeys from "hotkeys-js";
 import SlideThumbnail from "@/components/slide-thumbnail/slide-thumbnail.vue";
 import InteractiveEditor from "@/components/editor-panes/interactive-editor/interactive-editor.vue";
@@ -23,14 +22,11 @@ import CanvasModifier from "@/components/canvas-modifier/canvas-modifier.vue";
 
 import { useStore } from "@/store";
 
-import "splitpanes/dist/splitpanes.css";
 import SlideModel from "@/vms/slide";
 
 @Options({
   components: {
     EditorPanes,
-    Splitpanes,
-    Pane,
     SlideThumbnail,
     InteractiveEditor,
     CanvasModifier,

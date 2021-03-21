@@ -69,7 +69,10 @@
         />
       </div>
     </div>
-    <div @click="onClick">Test</div>
+
+    <div class="speaknote-editor">
+      <textarea class="speaknote-editor-input" />
+    </div>
   </div>
 </template>
 
@@ -131,28 +134,33 @@ export default class InteractiveEditor extends Vue {
 .interactive-editor
   position relative
   height 100%
-  max-height 520px
   max-width 1000px
   padding 10px
   display flex
   flex-direction column
+  background black
 
-  .slide-preview {
+  .slide-preview
     width 100%
     height 400px
     position absolute
     z-index -2
 
-    .slide-page-wrapper {
+    .slide-page-wrapper
       position relative
 
-      img {
+      img
         position absolute
         right 0
         top 0
-      }
-    }
-  }
+
+  .speaknote-editor
+    background red
+    flex-grow 2
+
+    .speaknote-editor-input
+      width 100%
+      height 100%
 
   .editor-main
     flex-grow 2
