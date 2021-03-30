@@ -52,7 +52,8 @@ export default class EditorPanes extends Vue {
 
 <style lang="stylus">
 .editor-panes
-  height 100%
+  overflow auto
+  height 100vh
   width 100%
 
   .splitter
@@ -60,6 +61,7 @@ export default class EditorPanes extends Vue {
     width 100%
 
     .pane1
+      height calc(100vh - 110px)
       overflow-y scroll
       border-right 1px dashed grey
       min-width 280px
@@ -69,4 +71,6 @@ export default class EditorPanes extends Vue {
 
     .pane2
       flex-grow 2
+      height 100%
+      background wheat
 </style>
