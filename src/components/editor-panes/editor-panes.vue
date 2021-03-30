@@ -5,7 +5,7 @@
         <slide-thumbnail v-for="(item, index) in items" :key="index" />
         <div class="blank-holder" />
       </div>
-      <div>
+      <div class="pane2">
         <interactive-editor />
         <!-- <canvas-modifier /> -->
       </div>
@@ -53,12 +53,20 @@ export default class EditorPanes extends Vue {
 <style lang="stylus">
 .editor-panes
   height 100%
+  width 100%
 
   .splitter
+    display flex
+    width 100%
+
     .pane1
       overflow-y scroll
       border-right 1px dashed grey
+      min-width 280px
 
       .blank-holder
         height 140px
+
+    .pane2
+      flex-grow 2
 </style>

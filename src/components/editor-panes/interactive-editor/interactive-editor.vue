@@ -138,7 +138,6 @@ export default class InteractiveEditor extends Vue {
   padding 10px
   display flex
   flex-direction column
-  background black
 
   .slide-preview
     width 100%
