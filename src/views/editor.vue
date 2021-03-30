@@ -1,7 +1,7 @@
 <template>
   <div class="main-layout editor-wrapper">
     <div class="editor-ribbon">
-      <a-tabs>
+      <a-tabs active-key="2">
         <a-tab-pane key="1">
           <template #tab>
             <span>

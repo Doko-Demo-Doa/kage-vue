@@ -12,29 +12,17 @@
     </a-button>
 
     <div class="separator" />
-
-    <a-button type="danger">
-      <gateway-outlined />
-      Preview
-    </a-button>
-    <div class="separator" />
-    <a-button type="primary">
-      <upload-outlined />
-      Publish
-    </a-button>
   </a-row>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { UploadOutlined, PlusCircleOutlined, GatewayOutlined } from "@ant-design/icons-vue";
+import { PlusCircleOutlined } from "@ant-design/icons-vue";
 
 export default defineComponent({
   name: "QuizToolbar",
   components: {
     PlusCircleOutlined,
-    UploadOutlined,
-    GatewayOutlined,
   },
 });
 </script>

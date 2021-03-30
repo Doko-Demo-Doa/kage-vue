@@ -5,10 +5,10 @@
   "syllabus": "shinkanzen-master-n3",
   "instruction": "Hãy chọn một đáp án đúng trong số 4 đáp án A-B-C-D",
   "passing_score": 70,
-  "type": "MULTIPLE_CHOICE",
   "auto_audit": true,
   "quizzes": [
     {
+      "type": "MULTIPLE_CHOICE",
       "audio_link": "https://google.com",
       "image_link": "https://google.com",
       "countdown": 90,
