@@ -45,7 +45,7 @@ export default class EditorPanes extends Vue {
   }
 
   beforeUnmount() {
-    hotkeys.unbind("a");
+    hotkeys.unbind("ctrl+m");
   }
 }
 </script>

@@ -10,8 +10,21 @@
             </span>
           </template>
           <editor-toolbar />
+          <editor-panes />
         </a-tab-pane>
+
         <a-tab-pane key="2">
+          <template #tab>
+            <span>
+              <ant-design-outlined />
+              Quiz
+            </span>
+          </template>
+          <quiz-toolbar />
+          <quiz-composer />
+        </a-tab-pane>
+
+        <a-tab-pane key="3">
           <template #tab>
             <span>
               <home-outlined />
@@ -19,17 +32,8 @@
             </span>
           </template>
         </a-tab-pane>
-        <a-tab-pane key="3">
-          <template #tab>
-            <span>
-              <ant-design-outlined />
-              Design
-            </span>
-          </template>
-        </a-tab-pane>
       </a-tabs>
     </div>
-    <EditorPanes />
   </div>
 </template>
 
@@ -38,11 +42,15 @@ import { Options, Vue } from "vue-class-component";
 import { HomeOutlined, FileOutlined, AntDesignOutlined } from "@ant-design/icons-vue";
 import EditorToolbar from "@/components/editor-toolbar/editor-toolbar.vue";
 import EditorPanes from "@/components/editor-panes/editor-panes.vue";
+import QuizToolbar from "@/components/quiz-toolbar/quiz-toolbar.vue";
+import QuizComposer from "@/components/quiz-composer/quiz-composer.vue";
 
 @Options({
   components: {
     EditorToolbar,
     EditorPanes,
+    QuizToolbar,
+    QuizComposer,
     HomeOutlined,
     FileOutlined,
     AntDesignOutlined,
