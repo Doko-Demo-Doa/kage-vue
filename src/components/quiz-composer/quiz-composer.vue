@@ -47,13 +47,14 @@
         </a-form>
       </div>
     </div>
-    <div class="bottom">Test</div>
+    <quiz-list />
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, reactive, UnwrapRef } from "vue";
 import MultipleChoices from "@/components/quiz-composer/multiple-choices/multiple-choices.vue";
+import QuizList from "@/components/quiz-list/quiz-list.vue";
 
 interface FormState {
   layout: "horizontal" | "vertical" | "inline";
@@ -64,6 +65,7 @@ interface FormState {
 export default defineComponent({
   components: {
     MultipleChoices,
+    QuizList,
   },
   setup() {
     const formState: UnwrapRef<FormState> = reactive({
