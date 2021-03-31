@@ -16,6 +16,8 @@
             </a-select>
           </a-form-item>
         </a-form>
+
+        <multiple-choices v-if="true" />
       </div>
 
       <div class="meta-column">
@@ -51,6 +53,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, UnwrapRef } from "vue";
+import MultipleChoices from "@/components/quiz-composer/multiple-choices/multiple-choices.vue";
 
 interface FormState {
   layout: "horizontal" | "vertical" | "inline";
@@ -59,7 +62,9 @@ interface FormState {
 }
 
 export default defineComponent({
-  components: {},
+  components: {
+    MultipleChoices,
+  },
   setup() {
     const formState: UnwrapRef<FormState> = reactive({
       layout: "vertical",
@@ -112,6 +117,8 @@ export default defineComponent({
       padding 0 1rem
       padding-top 1rem
       width 240px
+      height 500px
+      overflow scroll
       border-left 1px solid $color-gray-medium
 
     .meta-column

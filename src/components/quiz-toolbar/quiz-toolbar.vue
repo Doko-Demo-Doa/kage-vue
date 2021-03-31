@@ -1,5 +1,5 @@
 <template>
-  <a-row class="quiz-toolbar-wrapper">
+  <div class="quiz-toolbar-wrapper">
     <a-button>
       <plus-circle-outlined />
       New Quiz
@@ -12,7 +12,7 @@
     </a-button>
 
     <div class="separator" />
-  </a-row>
+  </div>
 </template>
 
 <script lang="ts">
