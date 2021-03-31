@@ -1,6 +1,6 @@
 <template>
   <div class="quiz-list">
-    <div class="quiz-cell meta-cell"></div>
+    <div class="quiz-cell meta-cell" @click="onChooseQuiz(0)"></div>
     <div class="quiz-cell">First Cell</div>
     <div class="quiz-cell selected-cell">First Cell</div>
     <div class="quiz-cell">First Cell</div>
@@ -18,8 +18,14 @@ export default defineComponent({
   setup() {
     const store = useStore();
     return {
+      store,
       deck: store.state.composingQuizDeck,
     };
+  },
+  methods: {
+    onChooseQuiz(idx: number) {
+      this.$store.commit("changeQuizIndex", idx);
+    },
   },
 });
 </script>
@@ -42,11 +48,11 @@ $height = 160px
     height 100px
     border-radius 4px
     cursor pointer
-    border 1px solid transparent
+    border 1px solid $color-gray-medium
     transition 300ms linear all
 
     &:hover
-      border 1px dashed $color-midnight
+      border 1px solid $color-midnight
 
   .meta-cell
     border 1px dashed $color-gray-medium

@@ -1,7 +1,7 @@
 <template>
   <div class="quiz-composer">
     <div class="middle">
-      <div class="quiz-preview">Test</div>
+      <quiz-preview />
 
       <div class="quiz-detail-edit">
         <a-form :layout="formState.layout">
@@ -55,6 +55,7 @@
 import { computed, defineComponent, reactive, UnwrapRef } from "vue";
 import MultipleChoices from "@/components/quiz-composer/multiple-choices/multiple-choices.vue";
 import QuizList from "@/components/quiz-list/quiz-list.vue";
+import QuizPreview from "@/components/quiz-preview/quiz-preview.vue";
 
 interface FormState {
   layout: "horizontal" | "vertical" | "inline";
@@ -66,6 +67,7 @@ export default defineComponent({
   components: {
     MultipleChoices,
     QuizList,
+    QuizPreview,
   },
   setup() {
     const formState: UnwrapRef<FormState> = reactive({
@@ -111,9 +113,6 @@ export default defineComponent({
   .middle
     display flex
     flex-grow 2
-
-    .quiz-preview
-      flex-grow 2
 
     .quiz-detail-edit
       padding 0 1rem

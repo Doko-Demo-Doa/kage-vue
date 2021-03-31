@@ -8,6 +8,14 @@
       />
     </a-form-item>
 
+    <a-form-item label="Nội dung câu hỏi">
+      <a-textarea
+        :maxlength="128"
+        placeholder="Nội dung câu hỏi"
+        :auto-size="{ minRows: 2, maxRows: 5 }"
+      />
+    </a-form-item>
+
     <a-form-item v-for="(item, index) in choices" :key="index" :label="'Lựa chọn ' + (index + 1)">
       <a-input :maxlength="24" placeholder="VD: 文法練習C" />
     </a-form-item>

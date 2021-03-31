@@ -25,6 +25,9 @@ const store = createStore<AppState>({
     removeSlide(state) {
       state.composingSlides.pop();
     },
+    changeQuizIndex(state, payload) {
+      console.log(payload);
+    },
   },
   actions: {},
   modules: {},
