@@ -17,6 +17,8 @@
           </a-form-item>
         </a-form>
 
+        <hr />
+
         <multiple-choices v-if="true" />
       </div>
 

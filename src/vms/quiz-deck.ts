@@ -1,3 +1,5 @@
+import QuizModel from "@/vms/quiz";
+
 export default class QuizDeckModel {
   id: string;
   name: string;
@@ -5,6 +7,7 @@ export default class QuizDeckModel {
   syllabus: string;
   instruction: string;
   selectedIndex: number;
+  quizCollection: Array<QuizModel>;
 
   constructor() {
     this.id = "0";
@@ -13,5 +16,6 @@ export default class QuizDeckModel {
     this.syllabus = "";
     this.instruction = "";
     this.selectedIndex = 0;
+    this.quizCollection = [];
   }
 }
