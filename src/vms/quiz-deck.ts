@@ -7,6 +7,7 @@ export default class QuizDeckModel {
   syllabus: string;
   instruction: string;
   selectedIndex: number;
+  passingScore: number;
   quizCollection: Array<QuizModel>;
 
   constructor() {
@@ -16,6 +17,7 @@ export default class QuizDeckModel {
     this.syllabus = "";
     this.instruction = "";
     this.selectedIndex = 0;
+    this.passingScore = 100;
     this.quizCollection = [];
   }
 }

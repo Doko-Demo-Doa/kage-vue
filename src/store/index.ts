@@ -31,6 +31,9 @@ const store = createStore<AppState>({
     changeQuizDeckName(state, payload: string) {
       state.composingQuizDeck.name = payload;
     },
+    changeQuizDeckInstruction(state, payload: string) {
+      state.composingQuizDeck.instruction = payload;
+    },
   },
   actions: {},
   modules: {},

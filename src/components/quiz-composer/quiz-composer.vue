@@ -37,7 +37,9 @@
             <a-textarea
               :maxlength="128"
               placeholder="Hướng dẫn làm quiz"
-              :auto-size="{ minRows: 2, maxRows: 5 }"
+              :auto-size="{ minRows: 3, maxRows: 6 }"
+              :value="quizDeckInstruction"
+              @change="onChangeInstruction($event.target.value)"
             />
           </a-form-item>
 
@@ -104,16 +106,23 @@ export default defineComponent({
     const quizDeckName = computed(() => {
       return store.state.composingQuizDeck.name;
     });
+    const quizDeckInstruction = computed(() => {
+      return store.state.composingQuizDeck.instruction;
+    });
     return {
       formState,
       formItemLayout,
       buttonItemLayout,
       quizDeckName,
+      quizDeckInstruction,
     };
   },
   methods: {
     onChangeText: function (newValue: string) {
       store.commit("changeQuizDeckName", newValue);
+    },
+    onChangeInstruction: function (newValue: string) {
+      store.commit("changeQuizDeckInstruction", newValue);
     },
   },
 });

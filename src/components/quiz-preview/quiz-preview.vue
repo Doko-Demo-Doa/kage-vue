@@ -1,14 +1,13 @@
 <template>
   <div class="quiz-preview">
-    <a-carousel class="carousel-wrapper">
+    <a-carousel class="carousel-wrapper" :dots="false">
       <!-- First slide, the instruction -->
       <div v-if="true" class="quiz-intro">
-        <h2>Bunpou quiz 105</h2>
-        <div>Hãy chọn một đáp án đúng trong số 4 đáp án A-B-C-D</div>
+        <h1>{{ quizTitle || " " }}</h1>
+        <div class="instruction">{{ quizInstruction }}</div>
       </div>
 
       <!-- Main quiz -->
-
       <div v-if="true" class="quiz-main">
         <h2 class="quiz-content">彼女は、毎日_____アイスクリームがすきです。</h2>
 
@@ -57,6 +56,14 @@ export default defineComponent({
       deck: store.state.composingQuizDeck,
     };
   },
+  computed: {
+    quizTitle: function () {
+      return this.$store.state.composingQuizDeck.name;
+    },
+    quizInstruction: function () {
+      return this.$store.state.composingQuizDeck.instruction;
+    },
+  },
   methods: {
     transformText: function (str: string) {
       return furiganaTemplateToHTML(str);
@@ -76,12 +83,18 @@ $radio-size = 60px
   flex-grow 2
   width 220px
   text-text-align start
+  user-select text
 
   .carousel-wrapper
     width 100%
 
   .quiz-intro
-    background wheat
+    min-height 360px
+    h1
+      margin-top 6rem
+    .instruction
+      font-size 1.6em
+      overflow-wrap break-word
 
   .quiz-main
     padding 0 2rem
