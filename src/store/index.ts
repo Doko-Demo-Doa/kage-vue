@@ -28,6 +28,9 @@ const store = createStore<AppState>({
     changeQuizIndex(state, payload) {
       console.log(payload);
     },
+    changeQuizDeckName(state, payload: string) {
+      state.composingQuizDeck.name = payload;
+    },
   },
   actions: {},
   modules: {},

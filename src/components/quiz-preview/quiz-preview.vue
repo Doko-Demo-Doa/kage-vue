@@ -1,19 +1,24 @@
 <template>
   <div class="quiz-preview">
-    <div v-if="false" class="intro">
-      <h2 class="quiz-title">Bunpou quiz 105</h2>
-      <div class="quiz-instruction">Hãy chọn một đáp án đúng trong số 4 đáp án A-B-C-D</div>
-    </div>
+    <a-carousel class="carousel-wrapper">
+      <!-- First slide, the instruction -->
+      <div v-if="true" class="quiz-intro">
+        <h2>Bunpou quiz 105</h2>
+        <div>Hãy chọn một đáp án đúng trong số 4 đáp án A-B-C-D</div>
+      </div>
 
-    <div v-if="true" class="quiz-main">
-      <h2 class="quiz-content">彼女は、毎日_____アイスクリームがすきです。</h2>
+      <!-- Main quiz -->
 
-      <a-radio-group v-model:value="value" class="choice-group" size="large">
-        <a-radio v-for="(item, index) in choices" :key="index" :value="item.id">
-          <div v-html="transformText(item.label)"></div>
-        </a-radio>
-      </a-radio-group>
-    </div>
+      <div v-if="true" class="quiz-main">
+        <h2 class="quiz-content">彼女は、毎日_____アイスクリームがすきです。</h2>
+
+        <a-radio-group v-model:value="value" class="choice-group" size="large">
+          <a-radio v-for="(item, index) in choices" :key="index" :value="item.id">
+            <div v-html="transformText(item.label)"></div>
+          </a-radio>
+        </a-radio-group>
+      </div>
+    </a-carousel>
   </div>
 </template>
 
@@ -69,9 +74,18 @@ $radio-size = 60px
   justify-content center
   padding 0 4rem
   flex-grow 2
+  width 220px
   text-text-align start
 
+  .carousel-wrapper
+    width 100%
+
+  .quiz-intro
+    background wheat
+
   .quiz-main
+    padding 0 2rem
+
     .choice-group
       display flex
       flex-direction column

@@ -25,7 +25,12 @@
       <div class="meta-column">
         <a-form :layout="formState.layout">
           <a-form-item label="Tên bộ quiz">
-            <a-input :maxlength="24" placeholder="VD: 文法練習C" />
+            <a-input
+              :maxlength="24"
+              placeholder="VD: 文法練習C"
+              :value="quizDeckName"
+              @change="onChangeText($event.target.value)"
+            />
           </a-form-item>
 
           <a-form-item label="Hướng dẫn">
@@ -49,12 +54,14 @@
         </a-form>
       </div>
     </div>
+
     <quiz-list />
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, reactive, UnwrapRef } from "vue";
+import store from "@/store";
 import MultipleChoices from "@/components/quiz-composer/multiple-choices/multiple-choices.vue";
 import QuizList from "@/components/quiz-list/quiz-list.vue";
 import QuizPreview from "@/components/quiz-preview/quiz-preview.vue";
@@ -94,32 +101,41 @@ export default defineComponent({
           }
         : {};
     });
+    const quizDeckName = computed(() => {
+      return store.state.composingQuizDeck.name;
+    });
     return {
       formState,
       formItemLayout,
       buttonItemLayout,
+      quizDeckName,
     };
+  },
+  methods: {
+    onChangeText: function (newValue: string) {
+      store.commit("changeQuizDeckName", newValue);
+    },
   },
 });
 </script>
 
 <style lang="stylus">
+$column-width = 240px
+
 .quiz-composer
   display flex
   flex-direction column
   height calc(100vh - 106px)
   overflow auto
   position relative
-  width 100%
 
   .middle
     display flex
-    flex-grow 2
 
     .quiz-detail-edit
       padding 0 1rem
       padding-top 1rem
-      width 240px
+      min-width $column-width
       height 500px
       overflow scroll
       border-left 1px solid $color-gray-medium
@@ -127,7 +143,7 @@ export default defineComponent({
     .meta-column
       padding 0 1rem
       padding-top 1rem
-      width 220px
+      min-width $column-width
       border-left 1px solid $color-gray-medium
 
       .max-score

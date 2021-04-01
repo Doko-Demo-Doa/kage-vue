@@ -7,6 +7,13 @@
 
     <div class="separator" />
 
+    <a-button type="primary">
+      <save-outlined />
+      Save Quiz
+    </a-button>
+
+    <div class="separator" />
+
     <a-button v-for="(button, index) in editorButtons" :key="index" type="link" circle>
       <i class="fa" :class="`fa-${button.icon}`" />
     </a-button>
@@ -17,12 +24,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { PlusCircleOutlined } from "@ant-design/icons-vue";
+import { PlusCircleOutlined, SaveOutlined } from "@ant-design/icons-vue";
 
 export default defineComponent({
   name: "QuizToolbar",
   components: {
     PlusCircleOutlined,
+    SaveOutlined,
   },
 });
 </script>
@@ -31,6 +39,7 @@ export default defineComponent({
 .quiz-toolbar-wrapper
   padding 12px 12px
   padding-top 0
+  display flex
   border-bottom 1px dashed $color-gray-medium
 
   .separator
