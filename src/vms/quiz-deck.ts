@@ -13,7 +13,7 @@ export default class QuizDeckModel {
     this.level = "";
     this.syllabus = "";
     this.instruction = "Hướng dẫn làm bài";
-    this.selectedIndex = 0;
+    this.selectedIndex = -1;
     this.passingScore = 100;
   }
 }

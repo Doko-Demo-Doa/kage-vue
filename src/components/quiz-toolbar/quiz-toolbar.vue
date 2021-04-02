@@ -1,6 +1,6 @@
 <template>
   <div class="quiz-toolbar-wrapper">
-    <a-button>
+    <a-button @click="createNewQuiz">
       <plus-circle-outlined />
       New Quiz
     </a-button>
@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import store from "@/store";
 import { PlusCircleOutlined, SaveOutlined } from "@ant-design/icons-vue";
 
 export default defineComponent({
@@ -31,6 +32,11 @@ export default defineComponent({
   components: {
     PlusCircleOutlined,
     SaveOutlined,
+  },
+  methods: {
+    createNewQuiz: function () {
+      store.commit("newQuiz");
+    },
   },
 });
 </script>

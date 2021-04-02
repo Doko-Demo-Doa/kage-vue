@@ -5,6 +5,7 @@ import { AppState } from "@/store/types";
 import SlideModel from "@/vms/slide";
 import QuizDeckModel from "@/vms/quiz-deck";
 import QuizMultipleChoiceModel from "@/vms/quiz-multiple-choices";
+import { QuizType } from "@/common/static-data";
 
 export const key: InjectionKey<Store<AppState>> = Symbol();
 
@@ -28,8 +29,9 @@ const store = createStore<AppState>({
     newQuiz(state) {
       state.composingQuizCollection.push(new QuizMultipleChoiceModel());
     },
-    changeQuizIndex(state, payload) {
+    changeQuizIndex(state, payload: number) {
       console.log(payload);
+      state.composingQuizMeta.selectedIndex = payload;
     },
     changeQuizDeckName(state, payload: string) {
       state.composingQuizMeta.name = payload;
@@ -39,7 +41,12 @@ const store = createStore<AppState>({
     },
     // Multiple choice quiz specific:
     changeCorrectIndex(state, payload: { id: string; cIndex: number }) {
-      const targetQuiz = state.composingQuizCollection.find((n) => n.id === payload.id);
+      const targetQuiz = state.composingQuizCollection.find(
+        (n) => n.id === payload.id && n.type === QuizType.MULTIPLE_CHOICE
+      ) as QuizMultipleChoiceModel;
+      if (targetQuiz) {
+        targetQuiz.correctIndex = payload.cIndex;
+      }
     },
   },
   actions: {},
