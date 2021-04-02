@@ -1,6 +1,6 @@
 <template>
   <div class="quiz-preview">
-    <a-carousel class="carousel-wrapper" :dots="false">
+    <a-carousel class="carousel-wrapper" :dots="false" :after-change="handleChange">
       <!-- First slide, the instruction -->
       <div v-if="true" class="quiz-intro">
         <h1>{{ quizTitle || " " }}</h1>
@@ -22,13 +22,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import { furiganaTemplateToHTML } from "@/utils/utils-formatting";
-import { useStore } from "@/store";
+import store from "@/store";
 
 export default defineComponent({
   setup() {
-    const store = useStore();
     const value = ref<number>(1);
 
     const choices = [
@@ -50,23 +49,31 @@ export default defineComponent({
       },
     ];
 
+    const quizIndex = computed(() => {
+      return store.state.composingQuizMeta.selectedIndex;
+    });
+
     return {
       value,
       choices,
       deck: store.state.composingQuizMeta,
+      quizIndex,
     };
   },
   computed: {
     quizTitle: function () {
-      return this.$store.state.composingQuizMeta.name;
+      return store.state.composingQuizMeta.name;
     },
     quizInstruction: function () {
-      return this.$store.state.composingQuizMeta.instruction;
+      return store.state.composingQuizMeta.instruction;
     },
   },
   methods: {
     transformText: function (str: string) {
       return furiganaTemplateToHTML(str);
+    },
+    handleChange: function (newIndex: number) {
+      store.commit("changeQuizIndex", newIndex - 1);
     },
   },
 });

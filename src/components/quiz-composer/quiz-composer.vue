@@ -12,12 +12,34 @@
               :disabled="quizIndex < 0"
               @change="onChangeQuizType"
             >
-              <a-select-option value="MULTIPLE_CHOICE">Chọn 1 đáp án đúng</a-select-option>
-              <a-select-option value="MULTIPLE_RESPONSE">Chọn nhiều đáp án đúng</a-select-option>
-              <a-select-option value="SHORT_ANSWER">Điền từ vào ô trống</a-select-option>
-              <a-select-option value="LONG_ANSWER">Điền câu</a-select-option>
-              <a-select-option value="FILL_IN_THE_BLANKS">Điền vào nhiều ô trống</a-select-option>
-              <a-select-option value="SELECT_FROM_LISTS">Chọn từ đúng trong ô</a-select-option>
+              <a-select-option
+                :disabled="currentQuizType === 'MULTIPLE_CHOICE'"
+                value="MULTIPLE_CHOICE"
+              >
+                Chọn 1 đáp án đúng</a-select-option
+              >
+              <a-select-option
+                :disabled="currentQuizType === 'MULTIPLE_RESPONSE'"
+                value="MULTIPLE_RESPONSE"
+              >
+                Chọn nhiều đáp án đúng</a-select-option
+              >
+              <a-select-option :disabled="currentQuizType === 'SHORT_ANSWER'" value="SHORT_ANSWER">
+                Điền từ vào ô trống
+              </a-select-option>
+              <a-select-option :disabled="currentQuizType === 'LONG_ANSWER'" value="LONG_ANSWER"
+                >Điền câu</a-select-option
+              >
+              <a-select-option
+                :disabled="currentQuizType === 'FILL_IN_THE_BLANKS'"
+                value="FILL_IN_THE_BLANKS"
+                >Điền vào nhiều ô trống</a-select-option
+              >
+              <a-select-option
+                :disabled="currentQuizType === 'SELECT_FROM_LISTS'"
+                value="SELECT_FROM_LISTS"
+                >Chọn từ đúng trong ô</a-select-option
+              >
             </a-select>
           </a-form-item>
         </a-form>
@@ -166,7 +188,7 @@ $column-width = 240px
     .quiz-detail-edit
       padding 0 1rem
       padding-top 1rem
-      min-width $column-width
+      width $column-width
       height 440px
       overflow scroll
       border-left 1px solid $color-gray-medium
@@ -174,7 +196,7 @@ $column-width = 240px
     .meta-column
       padding 0 1rem
       padding-top 1rem
-      min-width $column-width
+      width $column-width
       border-left 1px solid $color-gray-medium
 
       .max-score

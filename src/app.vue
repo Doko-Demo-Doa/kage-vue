@@ -22,6 +22,9 @@ body
   display: flex
   height: 100%
 
+hr
+  opacity 0.25
+
 #app
   font-family: "Avenir", Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
