@@ -38,6 +38,11 @@ const store = createStore<AppState>({
     changeQuizDeckInstruction(state, payload: string) {
       state.composingQuizMeta.instruction = payload;
     },
+    changeSingleQuizType(state, payload: { index: number; newType: QuizType }) {
+      if (payload.index < 0) return;
+      const targetQuiz = state.composingQuizCollection[payload.index];
+      targetQuiz.type = payload.newType;
+    },
     // Multiple choice quiz specific:
     changeCorrectIndex(state, payload: { id: string; cIndex: number }) {
       const targetQuiz = state.composingQuizCollection.find(

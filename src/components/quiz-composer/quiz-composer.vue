@@ -6,7 +6,12 @@
       <div class="quiz-detail-edit">
         <a-form :layout="formState.layout">
           <a-form-item label="Loại câu hỏi" name="region">
-            <a-select placeholder="Chọn loại câu hỏi" :disabled="quizIndex < 0">
+            <a-select
+              v-model:value="currentQuizType"
+              placeholder="Chọn loại câu hỏi"
+              :disabled="quizIndex < 0"
+              @change="onChangeQuizType"
+            >
               <a-select-option value="MULTIPLE_CHOICE">Chọn 1 đáp án đúng</a-select-option>
               <a-select-option value="MULTIPLE_RESPONSE">Chọn nhiều đáp án đúng</a-select-option>
               <a-select-option value="SHORT_ANSWER">Điền từ vào ô trống</a-select-option>
@@ -67,6 +72,7 @@ import store from "@/store";
 import MultipleChoices from "@/components/quiz-composer/multiple-choices/multiple-choices.vue";
 import QuizList from "@/components/quiz-list/quiz-list.vue";
 import QuizPreview from "@/components/quiz-preview/quiz-preview.vue";
+import { QuizType } from "@/common/static-data";
 
 interface FormState {
   layout: "horizontal" | "vertical" | "inline";
@@ -114,7 +120,6 @@ export default defineComponent({
     });
     const currentQuizType = computed(() => {
       const target = store.state.composingQuizCollection[quizIndex.value]?.type;
-      console.log("tt", target);
       return target;
     });
 
@@ -134,6 +139,12 @@ export default defineComponent({
     },
     onChangeInstruction: function (newValue: string) {
       store.commit("changeQuizDeckInstruction", newValue);
+    },
+    onChangeQuizType: function (newType: QuizType) {
+      store.commit("changeSingleQuizType", {
+        index: this.quizIndex,
+        newType,
+      });
     },
   },
 });
