@@ -1,6 +1,6 @@
 <template>
   <div class="quiz-preview">
-    <a-carousel class="carousel-wrapper" :dots="false" :after-change="handleChange">
+    <a-carousel ref="carousel" class="carousel-wrapper" :dots="false" :after-change="handleChange">
       <!-- First slide, the instruction -->
       <div v-if="true" class="quiz-intro">
         <h1>{{ quizTitle || " " }}</h1>
@@ -49,18 +49,21 @@ export default defineComponent({
       },
     ];
 
-    const quizIndex = computed(() => {
-      return store.state.composingQuizMeta.selectedIndex;
-    });
-
     return {
       value,
       choices,
       deck: store.state.composingQuizMeta,
-      quizIndex,
     };
   },
   computed: {
+    quizIndex: function () {
+      const selectedIndex = store.state.composingQuizMeta.selectedIndex;
+      if (selectedIndex >= 0) {
+        // @ts-ignore
+        this.$ref.carousel.goTo(selectedIndex);
+      }
+      return selectedIndex;
+    },
     quizTitle: function () {
       return store.state.composingQuizMeta.name;
     },

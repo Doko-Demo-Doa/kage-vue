@@ -52,6 +52,12 @@ const store = createStore<AppState>({
         targetQuiz.correctIndex = payload.cIndex;
       }
     },
+    onChangeMultipleChoiceQuestion(state, payload: { index: number; newQuestion: string }) {
+      const targetQuiz = state.composingQuizCollection[payload.index] as QuizMultipleChoiceModel;
+      if (targetQuiz) {
+        targetQuiz.title = payload.newQuestion;
+      }
+    },
   },
   actions: {},
   modules: {},

@@ -1,19 +1,12 @@
 <template>
   <a-form :layout="formState.layout">
-    <a-form-item label="Hướng dẫn">
-      <a-textarea
-        :maxlength="128"
-        placeholder="Hướng dẫn làm quiz"
-        :auto-size="{ minRows: 2, maxRows: 5 }"
-      />
-    </a-form-item>
-
     <a-form-item label="Nội dung câu hỏi">
       <a-textarea
         :maxlength="128"
         placeholder="Nội dung câu hỏi"
         :auto-size="{ minRows: 2, maxRows: 5 }"
       />
+      {{ title }}
     </a-form-item>
 
     <a-form-item v-for="(item, index) in choices" :key="index" :label="'Lựa chọn ' + (index + 1)">
@@ -24,6 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import store from "@/store";
 
 export default defineComponent({
   name: "QuizToolbar",
@@ -35,6 +29,12 @@ export default defineComponent({
     };
 
     return { choices, formState };
+  },
+  computed: {
+    title: function () {
+      const idx = store.state.composingQuizMeta.selectedIndex;
+      return store.state.composingQuizCollection[idx]?.title;
+    },
   },
 });
 </script>
