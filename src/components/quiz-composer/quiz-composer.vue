@@ -6,7 +6,7 @@
       <div class="quiz-detail-edit">
         <a-form :layout="formState.layout">
           <a-form-item label="Loại câu hỏi" name="region">
-            <a-select placeholder="Chọn loại câu hỏi">
+            <a-select placeholder="Chọn loại câu hỏi" :disabled="quizIndex < 0">
               <a-select-option value="MULTIPLE_CHOICE">Chọn 1 đáp án đúng</a-select-option>
               <a-select-option value="MULTIPLE_RESPONSE">Chọn nhiều đáp án đúng</a-select-option>
               <a-select-option value="SHORT_ANSWER">Điền từ vào ô trống</a-select-option>
@@ -19,7 +19,7 @@
 
         <hr />
 
-        <multiple-choices v-if="true" />
+        <multiple-choices v-if="currentQuizType === 'MULTIPLE_CHOICE'" />
       </div>
 
       <div class="meta-column">
@@ -109,12 +109,23 @@ export default defineComponent({
     const quizDeckInstruction = computed(() => {
       return store.state.composingQuizMeta.instruction;
     });
+    const quizIndex = computed(() => {
+      return store.state.composingQuizMeta.selectedIndex;
+    });
+    const currentQuizType = computed(() => {
+      const target = store.state.composingQuizCollection[quizIndex.value]?.type;
+      console.log("tt", target);
+      return target;
+    });
+
     return {
       formState,
       formItemLayout,
       buttonItemLayout,
       quizDeckName,
       quizDeckInstruction,
+      quizIndex,
+      currentQuizType,
     };
   },
   methods: {

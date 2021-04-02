@@ -30,7 +30,6 @@ const store = createStore<AppState>({
       state.composingQuizCollection.push(new QuizMultipleChoiceModel());
     },
     changeQuizIndex(state, payload: number) {
-      console.log(payload);
       state.composingQuizMeta.selectedIndex = payload;
     },
     changeQuizDeckName(state, payload: string) {
