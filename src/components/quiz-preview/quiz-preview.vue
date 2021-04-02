@@ -53,15 +53,15 @@ export default defineComponent({
     return {
       value,
       choices,
-      deck: store.state.composingQuizDeck,
+      deck: store.state.composingQuizMeta,
     };
   },
   computed: {
     quizTitle: function () {
-      return this.$store.state.composingQuizDeck.name;
+      return this.$store.state.composingQuizMeta.name;
     },
     quizInstruction: function () {
-      return this.$store.state.composingQuizDeck.instruction;
+      return this.$store.state.composingQuizMeta.instruction;
     },
   },
   methods: {

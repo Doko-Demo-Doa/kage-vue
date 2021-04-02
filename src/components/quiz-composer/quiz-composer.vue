@@ -104,10 +104,10 @@ export default defineComponent({
         : {};
     });
     const quizDeckName = computed(() => {
-      return store.state.composingQuizDeck.name;
+      return store.state.composingQuizMeta.name;
     });
     const quizDeckInstruction = computed(() => {
-      return store.state.composingQuizDeck.instruction;
+      return store.state.composingQuizMeta.instruction;
     });
     return {
       formState,
@@ -145,7 +145,7 @@ $column-width = 240px
       padding 0 1rem
       padding-top 1rem
       min-width $column-width
-      height 500px
+      height 440px
       overflow scroll
       border-left 1px solid $color-gray-medium
 

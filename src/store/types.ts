@@ -1,9 +1,11 @@
 import SlideModel from "@/vms/slide";
 import QuizDeckModel from "@/vms/quiz-deck";
+import QuizModel from "@/vms/quiz";
 
 export interface AppState {
   composingSlides: Array<SlideModel>;
-  composingQuizDeck: QuizDeckModel;
+  composingQuizMeta: QuizDeckModel;
+  composingQuizCollection: Array<QuizModel>;
   selectedSlideIndex: number;
   activeAsset: null;
   backtrack: Array<string>;

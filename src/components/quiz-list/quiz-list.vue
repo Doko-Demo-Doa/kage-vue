@@ -1,25 +1,29 @@
 <template>
   <div class="quiz-list">
-    <div class="quiz-cell meta-cell" @click="onChooseQuiz(0)"></div>
-    <div class="quiz-cell">First Cell</div>
-    <div class="quiz-cell selected-cell">First Cell</div>
-    <div class="quiz-cell">First Cell</div>
-    <div class="quiz-cell">First Cell</div>
-    <div class="quiz-cell">First Cell</div>
-    <div class="quiz-cell">First Cell</div>
+    <div
+      class="quiz-cell meta-cell"
+      :class="{ 'selected-cell': activeIndex === 0 }"
+      @click="onChooseQuiz(0)"
+    />
+    <div v-for="(item, index) in qCollection" :key="index" class="quiz-cell">First Cell</div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useStore } from "@/store";
+import store from "@/store";
 
 export default defineComponent({
   setup() {
-    const store = useStore();
     return {
       store,
-      deck: store.state.composingQuizDeck,
+      deck: store.state.composingQuizMeta,
+    };
+  },
+  data() {
+    return {
+      qCollection: store.state.composingQuizCollection,
+      activeIndex: store.state.composingQuizMeta.selectedIndex,
     };
   },
   methods: {

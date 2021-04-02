@@ -4,15 +4,15 @@ import { AppState } from "@/store/types";
 
 import SlideModel from "@/vms/slide";
 import QuizDeckModel from "@/vms/quiz-deck";
+import QuizMultipleChoiceModel from "@/vms/quiz-multiple-choices";
 
 export const key: InjectionKey<Store<AppState>> = Symbol();
-
-const emptyDeck = new QuizDeckModel();
 
 const store = createStore<AppState>({
   state: {
     composingSlides: Array<SlideModel>(),
-    composingQuizDeck: emptyDeck,
+    composingQuizMeta: new QuizDeckModel(),
+    composingQuizCollection: [],
     selectedSlideIndex: -1,
     activeAsset: null,
     // Action history, useful for undo-repo actions.
@@ -25,14 +25,21 @@ const store = createStore<AppState>({
     removeSlide(state) {
       state.composingSlides.pop();
     },
+    newQuiz(state) {
+      state.composingQuizCollection.push(new QuizMultipleChoiceModel());
+    },
     changeQuizIndex(state, payload) {
       console.log(payload);
     },
     changeQuizDeckName(state, payload: string) {
-      state.composingQuizDeck.name = payload;
+      state.composingQuizMeta.name = payload;
     },
     changeQuizDeckInstruction(state, payload: string) {
-      state.composingQuizDeck.instruction = payload;
+      state.composingQuizMeta.instruction = payload;
+    },
+    // Multiple choice quiz specific:
+    changeCorrectIndex(state, payload: { id: string; cIndex: number }) {
+      const targetQuiz = state.composingQuizCollection.find((n) => n.id === payload.id);
     },
   },
   actions: {},
