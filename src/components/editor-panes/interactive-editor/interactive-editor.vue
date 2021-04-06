@@ -57,21 +57,18 @@
       </div>
     </div>
     <div class="editor-main" :style="{ visibility: showPreview ? 'hidden' : 'visible' }">
-      <div class="header-area">
-        <textarea
-          v-model="title"
-          class="slide-title"
-          placeholder="Enter text here"
-          maxlength="26"
-          aria-rowcount="2"
-          rows="2"
-          @change="onChangeTitle($event.target.value)"
-        />
+      <div class="safe-area">
+        <div class="header-area">
+          <textarea
+            v-model="title"
+            class="slide-title"
+            placeholder="Enter text here"
+            maxlength="42"
+            aria-rowcount="2"
+            @change="onChangeTitle($event.target.value)"
+          />
+        </div>
       </div>
-    </div>
-
-    <div class="speaknote-editor">
-      <textarea class="speaknote-editor-input" />
     </div>
   </div>
 </template>
@@ -92,7 +89,7 @@ import store from "@/store";
 })
 export default class InteractiveEditor extends Vue {
   items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-  title = "hehe";
+  title = "Title goes here";
   portalOpened = false;
 
   windowRef?: Window = undefined;
@@ -157,34 +154,31 @@ export default class InteractiveEditor extends Vue {
         right 0
         top 0
 
-  .speaknote-editor
-    background red
-    flex-grow 2
-
-    .speaknote-editor-input
-      width 100%
-      height 100%
-
   .editor-main
-    flex-grow 2
+    width 800px
+    height 520px
     background white
     border 1px dashed $color-midnight
 
-    .header-area
-      border-bottom 1px solid $color-gray-medium
+    .safe-area
+      .header-area
+        // border-bottom 1px solid $color-gray-medium
+        padding 1.6rem 4rem
 
-      .slide-title
-        border 0
-        color $color-midnight
-        font-size 2.8em
-        margin-top 1.6rem
-        outline none
-        text-align center
-        text-anchor end
-        writing-mode vertical-rl
-        text-orientation upright
-        word-wrap break-word
-        resize none
+        .slide-title
+          border 0
+          color $color-midnight
+          font-size 2.8em
+          outline none
+          text-align center
+          text-anchor end
+          writing-mode vertical-rl
+          text-orientation upright
+          width 100%
+          overflow hidden
+          white-space pre-wrap
+          word-wrap break-word
+          resize none
 
   &::selection
     color: $color-gray-medium

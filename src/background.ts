@@ -15,9 +15,9 @@ async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 1200,
-    height: 680,
+    height: 720,
     minWidth: 1200,
-    minHeight: 680,
+    minHeight: 720,
     webPreferences: {
       // Required for Spectron testing
       enableRemoteModule: true,

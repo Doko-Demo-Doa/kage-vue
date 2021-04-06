@@ -1,10 +1,10 @@
 <template>
   <div class="editor-panes">
     <div class="splitter">
-      <div class="pane1">
+      <perfect-scrollbar class="pane1">
         <slide-thumbnail v-for="(item, index) in items" :key="index" />
         <div class="blank-holder" />
-      </div>
+      </perfect-scrollbar>
       <div class="pane2">
         <interactive-editor />
         <!-- <canvas-modifier /> -->
