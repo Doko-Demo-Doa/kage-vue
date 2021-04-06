@@ -11,6 +11,7 @@ export const key: InjectionKey<Store<AppState>> = Symbol();
 
 const store = createStore<AppState>({
   state: {
+    isPreview: false,
     composingSlides: Array<SlideModel>(),
     composingQuizMeta: new QuizDeckModel(),
     composingQuizCollection: [],
@@ -20,6 +21,9 @@ const store = createStore<AppState>({
     backtrack: Array<string>(),
   },
   mutations: {
+    togglePreview(state) {
+      state.isPreview = !state.isPreview;
+    },
     newSlide(state) {
       state.composingSlides.push(new SlideModel());
     },

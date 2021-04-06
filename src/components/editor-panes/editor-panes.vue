@@ -72,5 +72,4 @@ export default class EditorPanes extends Vue {
     .pane2
       flex-grow 2
       height 100%
-      background wheat
 </style>

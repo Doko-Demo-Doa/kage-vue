@@ -13,9 +13,9 @@
 
     <div class="separator" />
 
-    <a-button type="danger">
+    <a-button type="danger" @click="togglePreview">
       <gateway-outlined />
-      Preview
+      {{ "Preview:" + " " + `${isPreview ? "ON" : "OFF"}` }}
     </a-button>
     <div class="separator" />
     <a-button type="primary">
@@ -115,9 +115,17 @@ export default defineComponent({
       ],
     };
   },
+  computed: {
+    isPreview: function () {
+      return store.state.isPreview;
+    },
+  },
   methods: {
     createNewSlide() {
       store.commit("newSlide");
+    },
+    togglePreview() {
+      store.commit("togglePreview");
     },
   },
 });

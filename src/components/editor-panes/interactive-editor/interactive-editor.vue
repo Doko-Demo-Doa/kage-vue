@@ -83,6 +83,7 @@ import Reveal from "reveal.js/dist/reveal";
 // @ts-ignore
 import VueWindowPortal from "vue-window-portal";
 import { isElectron } from "@/native/utils-platform";
+import store from "@/store";
 
 @Options({
   components: {
@@ -92,10 +93,13 @@ import { isElectron } from "@/native/utils-platform";
 export default class InteractiveEditor extends Vue {
   items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   title = "hehe";
-  showPreview = true;
   portalOpened = false;
 
   windowRef?: Window = undefined;
+
+  get showPreview() {
+    return store.state.isPreview;
+  }
 
   openPortal() {
     this.portalOpened = true;
@@ -111,7 +115,7 @@ export default class InteractiveEditor extends Vue {
   }
 
   onClick() {
-    this.showPreview = !this.showPreview;
+    store.commit("togglePreview");
 
     if (isElectron()) {
       const { dialog } = require("electron").remote;
@@ -134,7 +138,7 @@ export default class InteractiveEditor extends Vue {
 .interactive-editor
   position relative
   height 100%
-  max-width 1000px
+  max-width 800px
   padding 10px
   display flex
   flex-direction column
