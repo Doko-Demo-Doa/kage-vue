@@ -129,6 +129,8 @@ export default defineComponent({
   },
   methods: {
     async onClickToolbarItem(itemId: string) {
+      // @ts-ignore
+      console.log(window.ipcRenderer);
       if (itemId === "insertImage") {
         const resp = await fileUtils.selectSingleFile();
         console.log(resp.filePaths);

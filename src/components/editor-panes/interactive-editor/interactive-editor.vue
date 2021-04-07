@@ -69,7 +69,7 @@
           />
         </div>
 
-        <div class="text-content-area">
+        <div v-if="false" class="text-content-area">
           <textarea class="slide-text-content" placeholder="Enter text here" maxlength="400" />
         </div>
 
@@ -129,7 +129,7 @@ export default class InteractiveEditor extends Vue {
 
   mounted() {
     const el = document.getElementById("konva-container");
-    const enableKonva = false;
+    const enableKonva = true;
 
     if (el && enableKonva) {
       const stage = new Konva.Stage({
@@ -254,6 +254,10 @@ export default class InteractiveEditor extends Vue {
       #konva-container
         height 300px
         background azure
+
+      img
+        width 200px
+        height 200px
 
       .text-content-area
         width 100%
