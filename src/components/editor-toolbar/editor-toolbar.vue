@@ -7,7 +7,13 @@
 
     <div class="separator" />
 
-    <a-button v-for="(button, index) in editorButtons" :key="index" type="link" circle>
+    <a-button
+      v-for="(button, index) in editorButtons"
+      :key="index"
+      type="link"
+      circle
+      @click="onClickToolbarItem(button.action)"
+    >
       <i class="fa" :class="`fa-${button.icon}`" />
     </a-button>
 
@@ -29,6 +35,7 @@
 import { defineComponent } from "vue";
 import { PaperClipOutlined, UploadOutlined, GatewayOutlined } from "@ant-design/icons-vue";
 import store from "@/store";
+import { fileUtils } from "@/utils/utils-files";
 
 export default defineComponent({
   name: "EditorToolbar",
@@ -99,9 +106,9 @@ export default defineComponent({
           label: "Create Link",
         },
         {
-          icon: "picture-o",
-          mode: "picture",
-          action: "drawImage",
+          icon: "images",
+          mode: "images",
+          action: "insertImage",
           shortcut: "Ctrl-Alt-I",
           label: "Insert Image",
         },
@@ -121,6 +128,12 @@ export default defineComponent({
     },
   },
   methods: {
+    async onClickToolbarItem(itemId: string) {
+      if (itemId === "insertImage") {
+        const resp = await fileUtils.selectSingleFile();
+        console.log(resp.filePaths);
+      }
+    },
     createNewSlide() {
       store.commit("newSlide");
     },

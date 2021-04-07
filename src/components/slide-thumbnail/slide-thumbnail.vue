@@ -1,5 +1,9 @@
 <template>
-  <div class="slide-thumbnail" :class="isActive ? 'slide-thumbnail-selected' : ''" @click="onClick">
+  <div
+    class="slide-thumbnail"
+    :class="!isActive ? 'slide-thumbnail-selected' : ''"
+    @click="onClick"
+  >
     <div class="counter">1</div>
     <div class="block-inside">
       <div class="title">Title</div>
@@ -15,8 +19,18 @@ import { Options, Vue } from "vue-class-component";
   components: {
     SlideThumbnail,
   },
+  props: {
+    isActive: Boolean,
+  },
 })
-export default class SlideThumbnail extends Vue {}
+export default class SlideThumbnail extends Vue {
+  private isActive = false;
+
+  mounted() {
+    // console.log("ee", this.$props);
+    // this.isActive = this.$props();
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

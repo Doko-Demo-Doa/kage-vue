@@ -1,4 +1,4 @@
-import RevealStatic from './reveal-d';
+import RevealStatic from "./reveal-d";
 
 declare global {
   interface Window {
