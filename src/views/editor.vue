@@ -6,7 +6,7 @@
           <template #tab>
             <span>
               <file-outlined />
-              File
+              Slide Builder
             </span>
           </template>
           <editor-toolbar />
@@ -17,7 +17,7 @@
           <template #tab>
             <span>
               <ant-design-outlined />
-              Quiz
+              Quiz Builder
             </span>
           </template>
           <quiz-toolbar />
@@ -28,7 +28,7 @@
           <template #tab>
             <span>
               <home-outlined />
-              Home
+              Settings
             </span>
           </template>
         </a-tab-pane>

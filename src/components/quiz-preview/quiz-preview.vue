@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent, ref } from "vue";
 import { furiganaTemplateToHTML } from "@/utils/utils-formatting";
 import store from "@/store";
 
@@ -112,7 +112,7 @@ $radio-size = 60px
     .choice-group
       display flex
       flex-direction column
-      align-items start
+      align-items flex-start
 
       .ant-radio-wrapper
         display flex
