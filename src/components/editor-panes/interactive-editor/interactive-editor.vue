@@ -68,6 +68,12 @@
             @change="onChangeTitle($event.target.value)"
           />
         </div>
+
+        <div class="text-content-area">
+          <textarea class="slide-text-content" placeholder="Enter text here" maxlength="400" />
+        </div>
+
+        <div v-if="false" id="konva-container" />
       </div>
     </div>
   </div>
@@ -79,6 +85,7 @@ import { Options, Vue } from "vue-class-component";
 import Reveal from "reveal.js/dist/reveal";
 // @ts-ignore
 import VueWindowPortal from "vue-window-portal";
+import Konva from "konva";
 import { isElectron } from "@/native/utils-platform";
 import store from "@/store";
 
@@ -121,6 +128,68 @@ export default class InteractiveEditor extends Vue {
   }
 
   mounted() {
+    const el = document.getElementById("konva-container");
+    const enableKonva = false;
+
+    if (el && enableKonva) {
+      const stage = new Konva.Stage({
+        container: "konva-container",
+        width: 800,
+        height: 320,
+      });
+
+      const layer = new Konva.Layer();
+      stage.add(layer);
+
+      const textNode = new Konva.Text({
+        text: "Text",
+        x: 50,
+        y: 50,
+        fontSize: 20,
+        draggable: true,
+        width: 200,
+      });
+
+      const textNode2 = new Konva.Text({
+        text: "Text",
+        x: 60,
+        y: 50,
+        fontSize: 20,
+        draggable: true,
+        width: 200,
+      });
+
+      layer.add(textNode);
+      layer.add(textNode2);
+
+      const tr = new Konva.Transformer({
+        anchorCornerRadius: 0,
+        enabledAnchors: ["middle-left", "middle-right"],
+        // set minimum width of text
+        boundBoxFunc: function (oldBox, newBox) {
+          newBox.width = Math.max(30, newBox.width);
+          return newBox;
+        },
+      });
+      tr.setAttr("node", textNode);
+
+      textNode.on("transform", function () {
+        // reset scale, so only with is changing by transformer
+        textNode.setAttrs({
+          width: textNode.width() * textNode.scaleX(),
+          scaleX: 1,
+        });
+      });
+
+      textNode.on("dragend", function (data) {
+        console.log(data);
+      });
+
+      layer.add(tr);
+
+      layer.draw();
+    }
+
     Reveal.initialize();
     return;
   }
@@ -158,9 +227,11 @@ export default class InteractiveEditor extends Vue {
     width 800px
     height 520px
     background white
-    border 1px dashed $color-midnight
+    border 1px solid $color-midnight
 
     .safe-area
+      height 100%
+
       .header-area
         // border-bottom 1px solid $color-gray-medium
         padding 1.6rem 4rem
@@ -179,6 +250,25 @@ export default class InteractiveEditor extends Vue {
           white-space pre-wrap
           word-wrap break-word
           resize none
+
+      #konva-container
+        height 300px
+        background azure
+
+      .text-content-area
+        width 100%
+        height 320px
+        padding 0 20px
+
+        textarea
+          font-size 2rem
+          padding 10px
+          outline none
+          border none
+          resize none
+          border 1px dashed $color-midnight
+          width 100%
+          height 320px
 
   &::selection
     color: $color-gray-medium
