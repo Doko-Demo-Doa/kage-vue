@@ -2,7 +2,11 @@
   <div class="editor-panes">
     <div class="splitter">
       <perfect-scrollbar class="pane1">
-        <slide-thumbnail v-for="(item, index) in items" :key="index" />
+        <slide-thumbnail
+          v-for="(item, index) in items"
+          :key="index"
+          @onClick="handleThumbnailClick"
+        />
         <div class="blank-holder" />
       </perfect-scrollbar>
       <div class="pane2">
@@ -34,6 +38,10 @@ import SlideModel from "@/vms/slide";
 })
 export default class EditorPanes extends Vue {
   items: SlideModel[] = [];
+
+  handleThumbnailClick() {
+    // alert("Hi");
+  }
 
   mounted() {
     const store = useStore();

@@ -30,6 +30,9 @@ const store = createStore<AppState>({
     removeSlide(state) {
       state.composingSlides.pop();
     },
+    selectSlide(state, slideNum: number) {
+      state.selectedSlideIndex = slideNum;
+    },
     newQuiz(state) {
       state.composingQuizCollection.push(new QuizMultipleChoiceModel());
     },

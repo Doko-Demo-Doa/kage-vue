@@ -1,5 +1,5 @@
 <template>
-  <div class="slide-thumbnail">
+  <div class="slide-thumbnail" :class="isActive ? 'slide-thumbnail-selected' : ''" @click="onClick">
     <div class="counter">1</div>
     <div class="block-inside">
       <div class="title">Title</div>
@@ -20,12 +20,20 @@ export default class SlideThumbnail extends Vue {}
 </script>
 
 <style lang="stylus" scoped>
+.slide-thumbnail-selected
+  opacity 1 !important
+
 .slide-thumbnail
   width 100%
   height 120px
   padding 0.5rem 1rem
   display flex
   user-select none
+  opacity 0.5
+  cursor pointer
+
+  &:hover
+    opacity 1
 
   .counter
     margin-right 0.5rem
