@@ -23,7 +23,7 @@ export default class SlideThumbnail extends Vue {}
 .slide-thumbnail
   width 100%
   height 120px
-  padding 1rem 1rem
+  padding 0.5rem 1rem
   display flex
   user-select none
 
@@ -36,7 +36,7 @@ export default class SlideThumbnail extends Vue {}
     border-radius 6px
 
     .title
-      padding 12px
+      padding 6px 12px
       font-weight bold
       text-align start
 

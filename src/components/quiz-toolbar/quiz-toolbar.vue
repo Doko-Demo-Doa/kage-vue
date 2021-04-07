@@ -14,10 +14,6 @@
 
     <div class="separator" />
 
-    <a-button v-for="(button, index) in editorButtons" :key="index" type="link" circle>
-      <i class="fa" :class="`fa-${button.icon}`" />
-    </a-button>
-
     <div class="separator" />
   </div>
 </template>

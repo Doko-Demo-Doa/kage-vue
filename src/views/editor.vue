@@ -1,12 +1,12 @@
 <template>
   <div class="main-layout editor-wrapper">
     <div class="editor-ribbon">
-      <a-tabs active-key="1">
+      <a-tabs>
         <a-tab-pane key="1">
           <template #tab>
             <span>
               <file-outlined />
-              File
+              Slide Builder
             </span>
           </template>
           <editor-toolbar />
@@ -17,7 +17,7 @@
           <template #tab>
             <span>
               <ant-design-outlined />
-              Quiz
+              Quiz Builder
             </span>
           </template>
           <quiz-toolbar />
@@ -28,7 +28,7 @@
           <template #tab>
             <span>
               <home-outlined />
-              Home
+              Settings
             </span>
           </template>
         </a-tab-pane>

@@ -112,7 +112,7 @@ $radio-size = 60px
     .choice-group
       display flex
       flex-direction column
-      align-items start
+      align-items flex-start
 
       .ant-radio-wrapper
         display flex
