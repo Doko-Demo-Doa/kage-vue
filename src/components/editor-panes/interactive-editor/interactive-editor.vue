@@ -73,7 +73,7 @@
           <textarea class="slide-text-content" placeholder="Enter text here" maxlength="400" />
         </div>
 
-        <div v-if="false" id="konva-container" />
+        <div id="konva-container" />
       </div>
     </div>
   </div>
@@ -86,8 +86,9 @@ import Reveal from "reveal.js/dist/reveal";
 // @ts-ignore
 import VueWindowPortal from "vue-window-portal";
 import Konva from "konva";
-import { isElectron } from "@/native/utils-platform";
 import store from "@/store";
+import { isElectron } from "@/native/utils-platform";
+import { emitter, EventType } from "@/utils/event-bus";
 
 @Options({
   components: {
@@ -130,65 +131,54 @@ export default class InteractiveEditor extends Vue {
   mounted() {
     const el = document.getElementById("konva-container");
     const enableKonva = true;
+    let stage: Konva.Stage;
+    let layer: Konva.Layer;
 
-    if (el && enableKonva) {
-      const stage = new Konva.Stage({
-        container: "konva-container",
-        width: 800,
-        height: 320,
-      });
+    stage = new Konva.Stage({
+      container: "konva-container",
+      width: 800,
+      height: 386,
+    });
 
-      const layer = new Konva.Layer();
-      stage.add(layer);
+    layer = new Konva.Layer();
+    stage.add(layer);
 
-      const textNode = new Konva.Text({
-        text: "Text",
-        x: 50,
-        y: 50,
-        fontSize: 20,
-        draggable: true,
-        width: 200,
-      });
+    emitter.on(EventType.INSERT_IMAGE, function (imageArray) {
+      // Code...
+      const arr: string[] = imageArray;
+      const imgUrl = `local-resource://${arr[0]}`;
 
-      const textNode2 = new Konva.Text({
-        text: "Text",
-        x: 60,
-        y: 50,
-        fontSize: 20,
-        draggable: true,
-        width: 200,
-      });
-
-      layer.add(textNode);
-      layer.add(textNode2);
-
-      const tr = new Konva.Transformer({
-        anchorCornerRadius: 0,
-        enabledAnchors: ["middle-left", "middle-right"],
-        // set minimum width of text
-        boundBoxFunc: function (oldBox, newBox) {
-          newBox.width = Math.max(30, newBox.width);
-          return newBox;
-        },
-      });
-      tr.setAttr("node", textNode);
-
-      textNode.on("transform", function () {
-        // reset scale, so only with is changing by transformer
-        textNode.setAttrs({
-          width: textNode.width() * textNode.scaleX(),
-          scaleX: 1,
+      Konva.Image.fromURL(imgUrl, function (imgNode: Konva.Image) {
+        imgNode.setAttrs({
+          name: "rect",
+          draggable: true,
+          x: 200,
+          y: 50,
+          scaleX: 0.3,
+          scaleY: 0.3,
         });
+
+        console.log(imgNode);
+
+        const imgTransformer = new Konva.Transformer({
+          enabledAnchors: ["top-left", "top-right", "bottom-left", "bottom-right"],
+          nodes: [imgNode],
+          keepRatio: true,
+          boundBoxFunc: (oldBox, newBox) => {
+            if (newBox.width < 10 || newBox.height < 10) {
+              return oldBox;
+            }
+            return newBox;
+          },
+        });
+
+        // imgTransformer.setAttr("node", imgNode);
+
+        layer.add(imgNode);
+        layer.add(imgTransformer);
+        layer.draw();
       });
-
-      textNode.on("dragend", function (data) {
-        console.log(data);
-      });
-
-      layer.add(tr);
-
-      layer.draw();
-    }
+    });
 
     Reveal.initialize();
     return;
@@ -196,6 +186,9 @@ export default class InteractiveEditor extends Vue {
 
   unmounted() {
     // Reveal.shuffle();
+    emitter.off(EventType.INSERT_IMAGE, () => {
+      // Callback
+    });
   }
 }
 </script>
@@ -234,7 +227,7 @@ export default class InteractiveEditor extends Vue {
 
       .header-area
         // border-bottom 1px solid $color-gray-medium
-        padding 1.6rem 4rem
+        padding 0.2rem 4rem
 
         .slide-title
           border 0
@@ -252,7 +245,7 @@ export default class InteractiveEditor extends Vue {
           resize none
 
       #konva-container
-        height 300px
+        height 386px
         background azure
 
       img

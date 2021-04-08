@@ -36,6 +36,7 @@ import { defineComponent } from "vue";
 import { PaperClipOutlined, UploadOutlined, GatewayOutlined } from "@ant-design/icons-vue";
 import store from "@/store";
 import { fileUtils } from "@/utils/utils-files";
+import { emitter, EventType } from "@/utils/event-bus";
 
 export default defineComponent({
   name: "EditorToolbar",
@@ -129,11 +130,10 @@ export default defineComponent({
   },
   methods: {
     async onClickToolbarItem(itemId: string) {
-      // @ts-ignore
-      console.log(window.ipcRenderer);
       if (itemId === "insertImage") {
         const resp = await fileUtils.selectSingleFile();
         console.log(resp.filePaths);
+        emitter.emit(EventType.INSERT_IMAGE, resp.filePaths);
       }
     },
     createNewSlide() {
